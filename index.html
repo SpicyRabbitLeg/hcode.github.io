@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美女</title>
+
+    <style>
+        video {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin:0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- https://api.qqsuu.cn/api/dm-xjj -->
+    <video class="mv" width="350" height="650" preload="auto" controls>
+        <source src="https://api.qqsuu.cn/api/dm-xjj" type="video/mp4">
+        您的浏览器不支持 HTML5 video 标签。
+    </video>
+
+
+    <!-- 缓存视频 最粗暴方式 -->
+    <video class="mv" style="display: none;" width="350" height="650" preload="auto" controls>
+        <source src="https://api.qqsuu.cn/api/dm-xjj" type="video/mp4">
+        您的浏览器不支持 HTML5 video 标签。
+    </video>
+
+
+
+    <script>
+        var videoList = document.getElementsByClassName("mv");
+
+        videoList[0].play();
+        var count = 1;
+        // 第一次先播放mv1，然后是mv2
+        for(var i = 0; i <videoList.length; i++) {
+            videoList[i].addEventListener('ended',function() {
+                playVide();
+                count++;
+            })
+        }
+
+        // 播放视频
+        function playVide(){
+            if(count % 2) {
+                videoList[0].src = "https://api.qqsuu.cn/api/dm-xjj"
+                videoList[1].play();
+                videoList[1].style.display=""
+                videoList[0].style.display="none"
+            } else {
+                videoList[1].src = "https://api.qqsuu.cn/api/dm-xjj"
+                videoList[0].play();
+                videoList[0].style.display=""
+                videoList[1].style.display="none"
+            }
+        }
+    </script>
+</body>
+
+</html>
